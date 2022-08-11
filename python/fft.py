@@ -37,7 +37,7 @@ def main(argv):
             _np_data = np.frombuffer(_pcm_data, dtype=np.int16)
             _peak = np.average(np.abs(_np_data))*2
             _bars = "#" * int(50*_peak/2**16)
-            print('%05d %s'%(_peak,_bars))
+            print('_peak: %05d, and _bars: %s'%(_peak,_bars))
             _fft_data = np.fft.fft(_np_data)
             print('_fft_data: ', end='')
             print(_fft_data)
