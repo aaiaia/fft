@@ -90,7 +90,7 @@ def main(argv):
     plt.figure(figsize=(10,4))
     librosa.display.specshow(log_spectrogram, sr=__sampling_rate, hop_length=2**(__radix_bit-1))
     plt.xlabel("Time")
-    plt.ylabel("Frequency")
+    plt.ylabel("Frequency: ~" + str(__sampling_rate>>1) + ' Hz')
     plt.colorbar(format='%+2.0f dB')
     plt.title("Spectrogram (dB)")
     plt.show()
