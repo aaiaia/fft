@@ -16,7 +16,7 @@ import getopt
 
 def main(argv):
     print(argv)
-    HELP_MSG = 'No help message'
+    HELP_MSG = 'python [FILE] --help, --radix_bit=[NUMBER, 2~11], --sampling_rate=[NUMBER], --frame_per_sample=[NUMBER, reserved], --in_file=[PATH, essential], --test'
 
     _funcName = sys._getframe(0).f_code.co_name
 
@@ -32,7 +32,8 @@ def main(argv):
         # argv 첫번째(index:0)는 파일명, 두번째(index:1)부터 Arguments
         opts, etc_args = getopt.getopt(argv[1:], \
             "hb:r:s:i:t:", ["help", "radix_bit=", "sampling_rate=", "frame_per_sample=", "in_file=", "test"])
-    except getopt.GetoptError: # 옵션지정이 올바르지 않은 경우
+    except getopt.GetoptError as e: # 옵션지정이 올바르지 않은 경우
+        print('exception: ' + str(e))
         print(HELP_MSG)
         sys.exit(2)
 
