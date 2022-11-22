@@ -14,6 +14,9 @@ import matplotlib.pyplot as plt
 # for Debugging
 import getopt
 
+__RADIX_BIT_MIN = 2
+__RADIC_BIT_MAX = 11
+
 def main(argv):
     print(argv)
     HELP_MSG = 'python [FILE] --help, --radix_bit=[NUMBER, 2~11], --sampling_rate=[NUMBER], --frame_per_sample=[NUMBER, reserved], --in_file=[PATH, essential], --test'
@@ -65,6 +68,13 @@ def main(argv):
         print('needs input file!')
         exit()
 
+    # Parameter Checking
+    if __radix_bit < __RADIX_BIT_MIN:
+        print('warning: __radix_bit is smaller than 2, forcely set to 2')
+        __radix_bit = __RADIX_BIT_MIN
+    elif __RADIC_BIT_MAX < __radix_bit:
+        print('warning: __radix_bit is larger than 11, forcely set to 11')
+        __radix_bit = __RADIC_BIT_MAX
     print('[configured specification]')
     print('__in_file: '             + str(__in_file             ))
     print('__radix_bit: '           + str(__radix_bit           ))
