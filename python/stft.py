@@ -83,16 +83,15 @@ def main(argv):
 
     x = librosa.load(__in_file, sr=__sampling_rate)[0]  # x, sr = librosa.load(__in_file) #sr = librosa.load(__in_file)[1] 
     y = librosa.stft(x, n_fft=2**__radix_bit, hop_length=2**(__radix_bit-1), win_length=2**(__radix_bit-1))
-
     magnitude = np.abs(y)
     log_spectrogram = librosa.amplitude_to_db(magnitude)
 
     plt.figure(figsize=(10,4))
     librosa.display.specshow(log_spectrogram, sr=__sampling_rate, hop_length=2**(__radix_bit-1))
-    plt.xlabel("Time")
+    plt.xlabel("Time: " + str(magnitude.size) + ' samples')
     plt.ylabel("Frequency: ~" + str(__sampling_rate>>1) + ' Hz')
     plt.colorbar(format='%+2.0f dB')
-    plt.title("Spectrogram (dB)")
+    plt.title("Spectrogram (dB) " + __in_file)
     plt.show()
 
 if __name__ == '__main__':
